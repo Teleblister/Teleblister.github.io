@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ömer Elmalıoğlu | Game Dev & Technical Designer</title>
+<style>
+:root{
+  --bg-color:#0f0f11; --text-main:#f0f0f0; --text-muted:#8b8b93;
+  --accent:#ffffff; --card-bg:#1a1a1d; --border:#2a2a2e;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg-color); color:var(--text-main); line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---- HEADER ---- */
+header{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; min-height:60vh; padding:2rem;
+}
+header h1{ font-size:3.5rem; font-weight:700; letter-spacing:-1.5px; margin-bottom:.5rem;}
+header p{ color:var(--text-muted); max-width:500px; font-size:1.1rem; margin-bottom:1.5rem;}
+.links{ display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center;}
+.links a{
+  color:var(--accent); text-decoration:none; font-size:.9rem; text-transform:uppercase;
+  letter-spacing:1px; padding-bottom:2px; border-bottom:1px solid transparent;
+  transition:border-color .2s ease;
+}
+.links a:hover{ border-bottom:1px solid var(--accent);}
+
+/* ---- GRID VIEW ---- */
+.portfolio-container{ max-width:1200px; margin:0 auto 100px auto; padding:0 2rem;}
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:3rem 2rem;}
+.project{
+  text-decoration:none; color:inherit; cursor:pointer; background:none; border:none;
+  text-align:left; width:100%; font:inherit; transition:transform .2s ease;
+  display:flex; flex-direction:column;
+}
+.project:hover{ transform:translateY(-5px);}
+.project-image{ width:100%; aspect-ratio:5/4; background:var(--card-bg); border-radius:4px; margin-bottom:1rem; object-fit:cover;}
+.project-info{ display:flex; flex-direction:column; flex:1;}
+.project-info h3{ font-size:1.25rem; margin-bottom:.3rem; min-height:1.5em;}
+.project-info p{
+  color:var(--text-muted); font-size:.9rem;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden; text-overflow:ellipsis; min-height:calc(0.9rem * 1.6 * 3);
+}
+.tags{ margin-top:.5rem; font-size:.75rem; color:var(--text-muted); font-family:monospace;}
+.project .tags{ margin-top:auto; padding-top:.5rem;}
+
+@media (max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){
+  header{ min-height:50vh;} header h1{ font-size:2.5rem;} .grid{ grid-template-columns:1fr;}
+}
+
+/* ---- DETAIL VIEW ---- */
+.detail{ max-width:800px; margin:0 auto 100px auto; padding:2rem; display:none;}
+.detail.active{ display:block;}
+.back-btn{
+  display:inline-flex; align-items:center; gap:.4rem; color:var(--text-muted);
+  text-decoration:none; font-size:.85rem; text-transform:uppercase; letter-spacing:1px;
+  background:none; border:none; cursor:pointer; margin-bottom:2rem; font-family:inherit;
+}
+.back-btn:hover{ color:var(--accent);}
+.detail-image{ width:100%; max-width:500px; aspect-ratio:5/4; background:var(--card-bg); border-radius:8px; margin:0 auto 2rem auto; object-fit:cover; display:block;}
+.detail h2{ font-size:2.2rem; margin-bottom:.5rem; letter-spacing:-1px;}
+.detail .tags{ margin-bottom:1rem; font-size:.8rem;}
+.play-link{
+  display:inline-flex; align-items:center; gap:.4rem; color:var(--bg-color);
+  background:var(--accent); text-decoration:none; font-size:.8rem; font-weight:600;
+  text-transform:uppercase; letter-spacing:.5px; padding:.55rem 1.1rem; border-radius:4px;
+  margin-bottom:1.8rem; transition:opacity .2s ease;
+}
+.play-link:hover{ opacity:.8;}
+.detail-section{ margin-bottom:1.8rem;}
+.detail-section h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:.5rem;}
+.detail-section p{ color:var(--text-main); margin-bottom:.5rem;}
+.detail-section ul{ padding-left:1.2rem; color:var(--text-main);}
+.detail-section li{ margin-bottom:.35rem;}
+.detail-gallery{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:1rem; align-items:start;}
+.detail-gallery div{ aspect-ratio:16/9; background:var(--card-bg); border-radius:4px;}
+.detail-gallery img, .detail-gallery video{
+  width:100%; height:auto; max-height:320px; object-fit:contain; border-radius:4px; background:var(--card-bg); display:block;
+}
+@media (max-width:600px){ .detail-gallery{ grid-template-columns:1fr;} }
+.hidden{ display:none !important;}
+</style>
+</head>
+<body>
+
+<header id="home">
+  <h1>Ömer Elmalıoğlu</h1>
+  <p>I'm a 2nd-year Game Development student at ESTU. I just genuinely love building games. My interests range from technical design and systems architecture to gameplay programming and rapid prototyping. I enjoy figuring out how things work under the hood and turning raw ideas into playable, fun mechanics. I'm currently looking for an internship to learn the industry ropes and create cool things alongside a real team.</p>
+  <div class="links">
+    <a href="https://teleblister.itch.io/" target="_blank">Itch.io</a>
+    <a href="https://www.linkedin.com/in/omer-faruk-elmalioglu/" target="_blank">LinkedIn</a>
+    <a href="mailto:elmaliogluomerfaruk@gmail.com">Contact</a>
+    <a href="Omer_Faruk_Elmalioglu_CV.pdf" download>CV</a>
+  </div>
+</header>
+
+<!-- ================= GRID VIEW ================= -->
+<main class="portfolio-container" id="grid-view">
+  <div class="grid">
+
+    <button class="project" data-project="proje-5">
+      <img src="images/paddle-cover.jpg" class="project-image" alt="">
+      <div class="project-info">
+        <h3>Paddddle</h3>
+        <p>My first Godot project — a solo-built, polished 4-way Pong with difficulty modes and a leaderboard.</p>
+        <div class="tags">Godot • GDScript • Solo Dev</div>
+      </div>
+    </button>
+
+    <button class="project" data-project="proje-4">
+      <img src="images/mc-cover.jpg" class="project-image" alt="">
+      <div class="project-info">
+        <h3>Modernism Calling</h3>
+        <p>Solo-developed incremental game jam entry — ranked #214 in Enjoyment out of 2245 entries.</p>
+        <div class="tags">Unity • C# • Game Jam • Solo Dev</div>
+      </div>
+    </button>
+
+    <button class="project" data-project="proje-3">
+      <img src="images/tlil-cover.jpg" class="project-image" alt="">
+      <div class="project-info">
+        <h3>The Last in Line</h3>
+        <p>Co-dev & level design on a 1v3 asymmetric split-screen survival game for GeliştirJam 2026.</p>
+        <div class="tags">Unity • C# • Game Jam</div>
+      </div>
+    </button>
+
+    <button class="project" data-project="proje-2">
+      <img src="images/lep-cover.jpg" class="project-image" alt="">
+      <div class="project-info">
+        <h3>Little Evil Planet</h3>
+        <p>Co-dev & level design on a Katamari-inspired local jam game with an absurd growth story.</p>
+        <div class="tags">Unity • C# • Game Jam</div>
+      </div>
+    </button>
+
+    <button class="project" data-project="proje-1">
+      <img src="images/dp-cover.jpg" class="project-image" alt="">
+      <div class="project-info">
+        <h3>Double Pendulum</h3>
+        <p>A high-precision chaotic system driven by RK4 integration.</p>
+        <div class="tags">Unity • C# • Simulation • Solo Dev</div>
+      </div>
+    </button>
+
+  </div>
+</main>
+
+<!-- ================= DETAIL PAGES ================= -->
+<!-- All within the same HTML file; visibility is toggled via JS. -->
+
+<section class="detail" id="proje-1">
+  <button class="back-btn" data-back>&larr; Back to projects</button>
+  <img src="images/dp-cover.jpg" class="detail-image" alt="">
+  <h2>Double Pendulum</h2>
+  <div class="tags">Unity • C# • Simulation • Solo Dev</div>
+  <a class="play-link" href="https://teleblister.itch.io/double-pendulum" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+
+  <div class="detail-section">
+    <h4>Overview</h4>
+    <p>A high-precision chaotic system driven by RK4 integration.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>My Role</h4>
+    <p>Solo — physics simulation, code and design entirely by myself.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>What is a Double Pendulum?</h4>
+    <p>The double pendulum is a simple deterministic system, yet it is extremely sensitive to initial conditions. A microscopic change at the start leads to a macroscopic divergence in the end — this is the Butterfly Effect.</p>
+    <p>The first pendulum constantly transfers its energy to the second, creating a complex feedback loop. This interconnected motion is what drives the system into unpredictable, non-linear chaos.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Technical Side</h4>
+    <p>Developed with Unity & C#.</p>
+    <ul>
+      <li><strong>RK4 Integration:</strong> Instead of standard Euler equations or Unity's physics system, I used the 4th Order Runge-Kutta method to ensure stable energy conservation and physical accuracy.</li>
+      <li><strong>Double Precision:</strong> Calculations are performed using <code>double</code> instead of <code>float</code>, keeping the chaos real and precise even in long sessions.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>Simulation Modes</h4>
+    <ul>
+      <li><strong>Solo Double Pendulum:</strong> Full control over all variables (L, m, g) and angles.</li>
+      <li><strong>Double Double Pendulum:</strong> Simulate two pendulums simultaneously to witness the Butterfly Effect. Input even a microscopic difference and watch them drift into completely different worlds.</li>
+      <li><strong>3-1000:</strong> Between 3 and 1000 pendulums with 10⁻⁹ difference, creating regular chaos and generative art.</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>Gallery</h4>
+    <div class="detail-gallery"><video src="images/dp-clip1.webm" autoplay loop muted playsinline></video><video src="images/dp-clip2.webm" autoplay loop muted playsinline></video></div>
+  </div>
+</section>
+
+<section class="detail" id="proje-2">
+  <button class="back-btn" data-back>&larr; Back to projects</button>
+  <img src="images/lep-cover.jpg" class="detail-image" alt="">
+  <h2>Little Evil Planet</h2>
+  <div class="tags">Unity • C# • Game Jam</div>
+  <a class="play-link" href="https://teleblister.itch.io/little-evil-planet" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+
+  <div class="detail-section">
+    <h4>Overview</h4>
+    <p>You grow from a micro-scale creature into a planet-consuming one, with an absurd story. Inspired by Katamari and made for a local jam.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>My Role</h4>
+    <p>Co-Dev, Level & Game Designer. Developed by a 2-person team.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Gallery</h4>
+    <div class="detail-gallery"><img src="images/lep-ss1.jpg" alt=""><img src="images/lep-ss2.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="detail" id="proje-3">
+  <button class="back-btn" data-back>&larr; Back to projects</button>
+  <img src="images/tlil-cover.jpg" class="detail-image" alt="">
+  <h2>The Last in Line</h2>
+  <div class="tags">Unity • C# • Game Jam</div>
+  <a class="play-link" href="https://buera0476.itch.io/the-last-in-line" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+
+  <div class="detail-section">
+    <h4>Overview</h4>
+    <p>A 1v3 asymmetric local split-screen survival party game for 2-4 players (4 recommended). One player is randomly chosen as the Killer, while the rest must work together as Survivors to make it out alive.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>My Role</h4>
+    <p>Co-Dev, Level & Game Designer. A jam game developed by 2 people for GeliştirJam 2026.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>How to Play</h4>
+    <p>Survivors repair generators, solve code terminals to power the exit gate, and use a dash to dodge and escape. The Killer is bigger and faster, and must hunt everyone down before they get out. Full keyboard and gamepad support.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Gallery</h4>
+    <div class="detail-gallery"><img src="images/tlil-ss1.jpg" alt=""><img src="images/tlil-ss2.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="detail" id="proje-4">
+  <button class="back-btn" data-back>&larr; Back to projects</button>
+  <img src="images/mc-cover.jpg" class="detail-image" alt="">
+  <h2>Modernism Calling</h2>
+  <div class="tags">Unity • C# • Game Jam • Solo Dev</div>
+  <a class="play-link" href="https://teleblister.itch.io/modernism-calling" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+
+  <div class="detail-section">
+    <h4>Overview</h4>
+    <p>An incremental game about depopulating 8 billion humans while keeping them docile with modern life. Ranked #214 in the Enjoyment category and #394 overall out of 2245 entries.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>My Role</h4>
+    <p>Solo entry — music, art, code and design are all mine.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Gallery</h4>
+    <div class="detail-gallery"><img src="images/mc-ss1.jpg" alt=""><img src="images/mc-ss2.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="detail" id="proje-5">
+  <button class="back-btn" data-back>&larr; Back to projects</button>
+  <img src="images/paddle-cover.jpg" class="detail-image" alt="">
+  <h2>Paddddle</h2>
+  <div class="tags">Godot • GDScript • Solo Dev</div>
+  <a class="play-link" href="https://teleblister.itch.io/paddddle" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+
+  <div class="detail-section">
+    <h4>Overview</h4>
+    <p>A single-player, 4-way Pong with 3 difficulty modes and a leaderboard! Classic Pong, but you control all 4 paddles alone.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>My Role</h4>
+    <p>Solo — art, music and code entirely by myself.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Controls</h4>
+    <ul>
+      <li><strong>W / S (Up / Down Arrows):</strong> Move vertical paddles</li>
+      <li><strong>A / D (Left / Right Arrows):</strong> Move horizontal paddles</li>
+      <li><strong>Space / Enter:</strong> Start / Resume game</li>
+      <li><strong>Esc:</strong> Pause / Open menu</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>Notes</h4>
+    <p>This is my very first Godot project! I started with a 2-player Pong and turned it into this.</p>
+  </div>
+
+  <div class="detail-section">
+    <h4>Gallery</h4>
+    <div class="detail-gallery"><img src="images/paddle-ss1.jpg" alt=""><video src="images/paddle-clip.webm" autoplay loop muted playsinline></video></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var grid = document.getElementById('grid-view');
+  var header = document.getElementById('home');
+  var details = document.querySelectorAll('.detail');
+
+  function showProject(id){
+    var target = document.getElementById(id);
+    if(!target || !target.classList.contains('detail')) return showGrid();
+    details.forEach(function(d){ d.classList.remove('active'); });
+    target.classList.add('active');
+    grid.classList.add('hidden');
+    header.classList.add('hidden');
+    window.scrollTo(0,0);
+  }
+
+  function showGrid(){
+    details.forEach(function(d){ d.classList.remove('active'); });
+    grid.classList.remove('hidden');
+    header.classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
+
+  document.querySelectorAll('[data-project]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-project');
+      location.hash = id;
+    });
+  });
+
+  document.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      location.hash = '';
+    });
+  });
+
+  window.addEventListener('hashchange', route);
+  function route(){
+    var id = location.hash.replace('#','');
+    if(id) showProject(id); else showGrid();
+  }
+  route();
+})();
+</script>
+
+</body>
+</html>
